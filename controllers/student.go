@@ -24,6 +24,11 @@ func CreateStudentScore(c echo.Context) error {
 	fmt.Println("studentModel: ", studentModel)
 	fmt.Println("reqMap: ", reqMap)
 
+	if err := models.DB.Create(&studentModel).Error; err != nil {
+		fmt.Println(err)
+		return c.JSON(http.StatusOK, map[string]interface{}{"success": false, "message": "Create StudentScore error"})
+	}
+
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
 
