@@ -16,13 +16,7 @@ func CreateStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
 
 	if err := models.SQLiteDB.Create(&studentModel).Error; err != nil {
 		fmt.Println(err)
@@ -39,13 +33,9 @@ func GetStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: GetStudentScore
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
@@ -57,13 +47,9 @@ func GetAllStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: GetAllStudentScore
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
@@ -75,13 +61,9 @@ func UpdateStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: UpdateStudentScore
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
@@ -93,13 +75,9 @@ func DeleteStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: DeleteStudentScore
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
@@ -111,13 +89,9 @@ func RecoverStudentScore(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: RecoverStudentScore
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
@@ -129,13 +103,9 @@ func GetSubjectGrade(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: GetSubjectGrade
 
 	// Fix grade: A: 81-100, B: 71-80, C: 61-70, D: 51-60, F: 0-50
 	/* expected response:
@@ -168,13 +138,9 @@ func GetSubjectGradeByStudentName(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	reqMap := map[string]interface{}{}
-	if err := c.Bind(&reqMap); err != nil {
-		log.Fatal(err)
-	}
-
 	fmt.Println("studentModel: ", studentModel)
-	fmt.Println("reqMap: ", reqMap)
+
+	// TODO: GetSubjectGradeByStudentName
 
 	/* expected response:
 	{
