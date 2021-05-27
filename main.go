@@ -33,7 +33,7 @@ func main() {
 	e.GET("/subject/grade/", controllers.GetSubjectGrade)
 	e.GET("/subject/grade/:name", controllers.GetSubjectGradeByStudentName)
 
-	e.Logger.Fatal(e.Start(":80"))
+	e.Logger.Fatal(e.Start(":8000"))
 }
 
 func hello(c echo.Context) error {

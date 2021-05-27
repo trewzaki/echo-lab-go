@@ -11,7 +11,7 @@ import (
 
 // CreateStudentScore ..
 func CreateStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -24,7 +24,7 @@ func CreateStudentScore(c echo.Context) error {
 	fmt.Println("studentModel: ", studentModel)
 	fmt.Println("reqMap: ", reqMap)
 
-	if err := models.DB.Create(&studentModel).Error; err != nil {
+	if err := models.SQLiteDB.Create(&studentModel).Error; err != nil {
 		fmt.Println(err)
 		return c.JSON(http.StatusOK, map[string]interface{}{"success": false, "message": "Create StudentScore error"})
 	}
@@ -34,7 +34,7 @@ func CreateStudentScore(c echo.Context) error {
 
 // GetStudentScore ..
 func GetStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -52,7 +52,7 @@ func GetStudentScore(c echo.Context) error {
 
 // GetAllStudentScore ..
 func GetAllStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -70,7 +70,7 @@ func GetAllStudentScore(c echo.Context) error {
 
 // UpdateStudentScore ..
 func UpdateStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -88,7 +88,7 @@ func UpdateStudentScore(c echo.Context) error {
 
 // DeleteStudentScore ..
 func DeleteStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -106,7 +106,7 @@ func DeleteStudentScore(c echo.Context) error {
 
 // RecoverStudentScore ..
 func RecoverStudentScore(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -124,7 +124,7 @@ func RecoverStudentScore(c echo.Context) error {
 
 // GetSubjectGrade ..
 func GetSubjectGrade(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -136,13 +136,34 @@ func GetSubjectGrade(c echo.Context) error {
 
 	fmt.Println("studentModel: ", studentModel)
 	fmt.Println("reqMap: ", reqMap)
+
+	// Fix grade: A: 81-100, B: 71-80, C: 61-70, D: 51-60, F: 0-50
+	/* expected response:
+	[
+		{
+			"name": "Tong",
+			"subject": "eng",
+			"grade": "A"
+		},
+		{
+			"name": "Tong",
+			"subject": "math",
+			"grade": "B"
+		},
+		{
+			"name": "Tong2",
+			"subject": "eng",
+			"grade": "C"
+		}
+	]
+	*/
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }
 
 // GetSubjectGradeByStudentName ..
 func GetSubjectGradeByStudentName(c echo.Context) error {
-	studentModel := models.StudentScoreName{}
+	studentModel := models.StudentScore{}
 	if err := c.Bind(&studentModel); err != nil {
 		log.Fatal(err)
 	}
@@ -154,6 +175,14 @@ func GetSubjectGradeByStudentName(c echo.Context) error {
 
 	fmt.Println("studentModel: ", studentModel)
 	fmt.Println("reqMap: ", reqMap)
+
+	/* expected response:
+	{
+		"eng": "A",
+		"math": "B",
+		"social": "C"
+	}
+	*/
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"success": true})
 }

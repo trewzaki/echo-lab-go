@@ -3,22 +3,20 @@ package models
 import (
 	"fmt"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
-// DB : Centralize database instance
-var DB *gorm.DB
+// SQLiteDB : Centralize database instance connection
+var SQLiteDB *gorm.DB
 
 // InitialDatabase : Initial database function to connect with DBMS
 func InitialDatabase() error {
-	var connectErr error
-
-	connectionString := fmt.Sprintf("host=35.240.191.214 port=5432 user=postgres dbname=fillgoods-lab password=IkDD43cIamwavO7s")
-	DB, connectErr = gorm.Open("postgres", connectionString)
-	if connectErr != nil {
-		fmt.Println(connectErr)
-		return connectErr
+	fmt.Println("wowowowowoww")
+	var err error
+	SQLiteDB, err = gorm.Open(sqlite.Open("database/lab.db"), &gorm.Config{})
+	if err != nil {
+		panic(err)
 	}
 
 	autoMigrateDatabase()
@@ -28,5 +26,5 @@ func InitialDatabase() error {
 }
 
 func autoMigrateDatabase() {
-	DB.AutoMigrate(&StudentScoreName{})
+	SQLiteDB.AutoMigrate(&StudentScore{})
 }
