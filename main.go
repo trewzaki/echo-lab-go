@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"echo-lab-go/controllers"
@@ -34,6 +35,8 @@ func main() {
 	e.GET("/subject/grade/:name", controllers.GetSubjectGradeByStudentName)
 
 	e.Logger.Fatal(e.Start(":8000"))
+
+	fmt.Println("eiei")
 }
 
 func hello(c echo.Context) error {
